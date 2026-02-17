@@ -123,7 +123,11 @@ def provision_step_4_destination(request):
     config.influxdb_url = request.form["influxdb_url"]
     config.influxdb_token = request.form["influxdb_token"]
     config.influxdb_bucket = request.form["influxdb_bucket"]
-    
+
+    # trifle
+    config.trifle_url = request.form["trifle_url"].strip()
+    config.trifle_token = request.form["trifle_token"].strip()
+
     write_config()
 
     if model == "grow":

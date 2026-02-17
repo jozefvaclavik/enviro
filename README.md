@@ -42,6 +42,7 @@ You can use 3xAA or 3xAAA (either alkaline or NiMH), a single cell LiPo battery,
 - [Adafruit IO](documentation/destinations/adafruit-io.md)
 - [InfluxDB](documentation/destinations/influxdb.md)
 - [MQTT](documentation/destinations/mqtt.md)
+- [Trifle](documentation/destinations/trifle.md)
 - [Custom HTTP endpoint](documentation/destinations/custom-http-endpoint.md)
 
 ## Documentation

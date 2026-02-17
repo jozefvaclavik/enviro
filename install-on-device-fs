@@ -2,26 +2,26 @@
 
 DEVICES=$(mpremote connect list | grep MicroPython | cut -d " " -f 1)
 
-if [ -z $DEVICES ] ; then
+if [ -z "$DEVICES" ] ; then
   echo "No MicroPython devices found in FS mode"
   exit 1
 fi
 
-DEVICE=${DEVICES[0]}
+DEVICE=$(echo "$DEVICES" | head -n 1)
 
 echo "Copying Enviro firmware files to ${DEVICE}"
 
 function create_directory {
   echo -n "> creating directory $1"
 
-  RESULT=$(mpremote connect ${DEVICE} mkdir $1)
+  RESULT=$(mpremote connect "${DEVICE}" mkdir "$1" 2>&1)
   ERROR=$?
 
 
   if [ $ERROR -eq 0 ] ; then
     echo " .. done!"
   else
-    if [[ "$RESULT" == *"EEXIST"* ]] ; then
+    if [[ "$RESULT" == *"EEXIST"* || "$RESULT" == *"File exists"* ]] ; then
       echo " .. already exists, skipping."
     else
       echo " .. failed!"
@@ -35,7 +35,7 @@ function copy {
   for file in $1
   do
     echo -n "> copying file $file"
-    mpremote connect ${DEVICE} cp $file $2 > /dev/null
+    mpremote connect "${DEVICE}" cp $file $2 > /dev/null
     if [ $? -eq 0 ] ; then
       echo " .. done!"
     else
@@ -64,5 +64,10 @@ copy "enviro/html/*.html" :enviro/html/
 
 copy "enviro/html/images/*" :enviro/html/images/
 
-copy "phew/__init__.py" :phew/
-copy "phew/phew/*.py" :phew/phew/
+if [ -f "phew/__init__.py" ] && [ -d "phew/phew" ] ; then
+  copy "phew/__init__.py" :phew/
+  copy "phew/phew/*.py" :phew/phew/
+else
+  echo "! missing phew files in local checkout"
+  echo "! run: git submodule update --init --recursive"
+fi

@@ -19,7 +19,7 @@ reading_frequency = 15
 # how often to trigger a resync of the onboard RTC (in hours)
 resync_frequency = 168
 
-# where to upload to ("http", "mqtt", "adafruit_io", "influxdb")
+# where to upload to ("http", "mqtt", "adafruit_io", "influxdb", "trifle")
 destination = None
 
 # how often to upload data (number of cached readings)
@@ -29,6 +29,10 @@ upload_frequency = 5
 custom_http_url = None
 custom_http_username = None
 custom_http_password = None
+
+# trifle settings
+trifle_url = "https://app.trifle.io"
+trifle_token = None
 
 # mqtt broker settings
 mqtt_broker_address = None

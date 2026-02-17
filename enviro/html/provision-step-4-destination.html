@@ -28,7 +28,11 @@
           Adafruit IO
           <p class="note">A platform designed by our friends at Adafruit to store and display your data.</p>
         </li>
-      </ul>        
+        <li data-destination="trifle">
+          Trifle
+          <p class="note">A time-series data platform for tracking and analyzing metrics over time.</p>
+        </li>
+      </ul>
     </section>
 
     <input type="hidden" id="destination" name="destination" value="{{config.destination}}" />
@@ -101,8 +105,23 @@
         <h2>HTTP authentication credentials (optional).</h2>
         <aside>Username and password if your endpoint support authentication.</aside>
         <fieldset>
-          <input type="text" name="custom_http_username" value="{{config.custom_http_username}}" placeholder="Username (e.g. data_junkie)" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" />        
+          <input type="text" name="custom_http_username" value="{{config.custom_http_username}}" placeholder="Username (e.g. data_junkie)" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" />
           <input type="text" name="custom_http_password" value="{{config.custom_http_password}}" placeholder="Password (e.g. ih3artd4ta)" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" />
+        </fieldset>
+      </div>
+
+      <div id="destination_trifle">
+        <h1>Trifle API details</h1>
+        <h2>Enter your Trifle API URL.</h2>
+        <aside>This is the base URL of your Trifle instance (e.g. https://trifle.example.com).</aside>
+        <fieldset>
+          <input type="text" name="trifle_url" value="{{config.trifle_url}}" placeholder="e.g. https://trifle.example.com" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" />
+        </fieldset>
+        <br>
+        <h2>Enter your Trifle API token.</h2>
+        <aside>Create a project token with write permissions in your Trifle dashboard.</aside>
+        <fieldset>
+          <input type="text" name="trifle_token" value="{{config.trifle_token}}" placeholder="e.g. SFMyNTY.g2gDaA..." autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" />
         </fieldset>
       </div>
     </div>
